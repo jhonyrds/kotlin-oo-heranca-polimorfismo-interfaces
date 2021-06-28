@@ -1,56 +1,37 @@
 fun main() {
     println("Bem vindo ao Bytebank")
 
-    val jhony = Funcionario(
-        nome = "Jhony",
-        cpf = "111.111.111-11",
-        salario = 1000.00
+    val contaCorrente = ContaCorrente(
+        titular = "Jhony",
+        numero = 1000)
+
+    val contaPoupanca = ContaPoupanca(
+        titular = "Jhony",
+        numero = 1001
     )
 
-    val stephanie = Gerente(
-        nome = "Stephanie",
-        cpf = "222.222.222-22",
-        salario = 2000.00,
-        senha = 1234
-    )
+    contaCorrente.deposita(1000.0)
+    contaPoupanca.deposita(1000.0)
 
-    println("nome ${jhony.nome}")
-    println("cpf ${jhony.cpf}")
-    println("salario ${jhony.salario}")
-    println("bonificação ${jhony.bonificacao}")
+    println("saldo conta corrente: ${contaCorrente.saldo}")
+    println("saldo conta corrente: ${contaPoupanca.saldo}")
 
-    println("------------------")
+    contaCorrente.saca(100.0)
+    contaPoupanca.saca(100.0)
 
-    println("nome ${stephanie.nome}")
-    println("cpf ${stephanie.cpf}")
-    println("salario ${stephanie.salario}")
-    println("bonificação ${stephanie.bonificacao}")
+    println("saldo conta corrente após saque: ${contaCorrente.saldo}")
+    println("saldo conta poupança após saque: ${contaPoupanca.saldo}")
 
-    if (stephanie.autentica(1234)){
-        println("autenticou com sucesso")
-    }else{
-        println("falha na autenticação")
-    }
+    contaCorrente.transfere(100.0, contaPoupanca)
 
-    println("------------------")
+    println("saldo conta corrente após transferir para poupança: ${contaCorrente.saldo}")
+    println("saldo conta poupança após receber transferência: ${contaPoupanca.saldo}")
 
-    val ze = Diretor(
-        nome="Zé",
-        cpf = "333.333.333-33",
-        salario = 4000.0,
-        senha = 1234,
-        plr = 200.0
-    )
+    contaPoupanca.transfere(200.0, contaCorrente)
 
-    println("nome ${ze.nome}")
-    println("cpf ${ze.cpf}")
-    println("salario ${ze.salario}")
-    println("bonificação ${ze.bonificacao}")
-    println("plr ${ze.plr}")
+    println("saldo conta corrente após receber transferÊncia: ${contaCorrente.saldo}")
+    println("saldo conta poupança após fazer transferência: ${contaPoupanca.saldo}")
 
-    if (ze.autentica(1234)){
-        println("autenticou com sucesso")
-    }else{
-        println("falha na autenticação")
-    }
+
 }
+
